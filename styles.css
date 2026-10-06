@@ -1,10 +1,10 @@
 :root {
   color-scheme: dark;
-  --cream: #fff4f6;
-  --muted: rgba(255, 232, 238, 0.72);
-  --glass: rgba(23, 2, 10, 0.58);
-  --line: rgba(255, 209, 222, 0.24);
-  --accent: #ff779d;
+  --cream: #f8f2ff;
+  --muted: rgba(232, 218, 247, 0.72);
+  --glass: rgba(25, 12, 37, 0.62);
+  --line: rgba(207, 171, 244, 0.26);
+  --accent: #c497ff;
 }
 
 * { box-sizing: border-box; }
@@ -14,29 +14,8 @@ html, body { min-height: 100%; }
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: #080305;
+  background: #100914;
   color: var(--cream);
-}
-
-.intro-video {
-  position: fixed;
-  z-index: 20;
-  inset: 0;
-  overflow: hidden;
-  background: #080305;
-  opacity: 1;
-  transition: opacity 600ms ease, visibility 600ms ease;
-}
-
-.intro-video__media {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.intro-video--finished {
-  visibility: hidden;
-  opacity: 0;
 }
 
 .page {
@@ -52,7 +31,7 @@ body {
   position: fixed;
   z-index: -2;
   inset: 0;
-  background-image: url("assets/model.jpg");
+  background-image: url("assets/model.png");
   background-size: cover;
   background-position: center 52%;
   transform: scale(1.02);
@@ -63,8 +42,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(13, 0, 5, 0.08) 20%, rgba(18, 0, 8, 0.48) 48%, rgba(8, 0, 3, 0.94) 100%),
-    linear-gradient(90deg, rgba(18, 0, 8, 0.48), transparent 65%);
+    linear-gradient(180deg, rgba(13, 5, 19, 0.08) 20%, rgba(17, 7, 27, 0.5) 48%, rgba(10, 4, 15, 0.94) 100%),
+    linear-gradient(90deg, rgba(17, 7, 27, 0.52), transparent 65%);
 }
 
 .card {
@@ -161,7 +140,7 @@ h1 {
   padding: 0.8rem 1rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
-  background: rgba(112, 7, 38, 0.26);
+  background: rgba(66, 34, 92, 0.32);
   color: var(--cream);
   text-decoration: none;
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
@@ -169,11 +148,37 @@ h1 {
 
 .link:hover, .link:focus-visible {
   transform: translateY(-2px);
-  border-color: rgba(255, 201, 218, 0.54);
-  background: rgba(144, 13, 52, 0.4);
+  border-color: rgba(218, 190, 249, 0.58);
+  background: rgba(91, 47, 125, 0.46);
 }
 
 .link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.link--telegram {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(198, 151, 255, 0.58);
+  background: linear-gradient(110deg, rgba(76, 37, 111, 0.52), rgba(142, 83, 190, 0.48), rgba(76, 37, 111, 0.52));
+  background-size: 220% 100%;
+  box-shadow: 0 0 0.9rem rgba(180, 112, 255, 0.24), inset 0 0 1.2rem rgba(203, 155, 255, 0.12);
+  animation: telegram-glow 3s ease-in-out infinite;
+}
+
+.link--telegram::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+  transform: translateX(-130%);
+  animation: telegram-shine 3s ease-in-out infinite;
+}
+
+.link--telegram > * { position: relative; }
+
+.link--telegram:hover, .link--telegram:focus-visible {
+  background: linear-gradient(110deg, rgba(92, 46, 131, 0.7), rgba(162, 94, 218, 0.62), rgba(92, 46, 131, 0.7));
+  box-shadow: 0 0 1.4rem rgba(193, 126, 255, 0.52), inset 0 0 1.4rem rgba(221, 185, 255, 0.18);
+}
 
 .link__icon {
   display: grid;
@@ -204,64 +209,25 @@ h1 {
 
 .footer {
   margin: 1.6rem 0 0;
-  color: rgba(255, 220, 229, 0.48);
+  color: rgba(228, 211, 246, 0.5);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.adult-dialog {
-  position: fixed;
-  z-index: 10;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  background: rgba(4, 0, 2, 0.76);
-  backdrop-filter: blur(5px);
-}
-
-.adult-dialog[hidden] { display: none; }
-
-.adult-dialog__content {
-  width: min(100%, 25rem);
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 192, 213, 0.32);
-  border-radius: 1.25rem;
-  background: #18030b;
-  color: var(--cream);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.56);
-}
-.adult-dialog__eyebrow {
-  margin: 0 0 0.45rem;
-  color: var(--accent);
-  font-size: 0.67rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.adult-dialog h2 { margin: 0; font-size: 1.35rem; letter-spacing: -0.025em; }
-.adult-dialog p:not(.adult-dialog__eyebrow) { margin: 0.65rem 0 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
-.adult-dialog .adult-dialog__hint { color: rgba(255, 216, 228, 0.58); font-size: 0.78rem; }
-.adult-dialog__actions { display: flex; gap: 0.65rem; margin-top: 1.35rem; }
-.adult-dialog__actions > * {
-  flex: 1;
-  padding: 0.75rem 0.9rem;
-  border-radius: 0.75rem;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 750;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-.adult-dialog__continue { border: 1px solid #ff8bad; background: #cf2859; color: #fff; }
-.adult-dialog__actions > *:hover, .adult-dialog__actions > *:focus-visible { filter: brightness(1.12); }
-.adult-dialog__actions > *:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
 @keyframes lift {
   from { opacity: 0; transform: translateY(1.2rem); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes telegram-glow {
+  0%, 100% { background-position: 0% 50%; box-shadow: 0 0 0.9rem rgba(180, 112, 255, 0.24), inset 0 0 1.2rem rgba(203, 155, 255, 0.12); }
+  50% { background-position: 100% 50%; box-shadow: 0 0 1.35rem rgba(193, 126, 255, 0.5), inset 0 0 1.5rem rgba(221, 185, 255, 0.2); }
+}
+
+@keyframes telegram-shine {
+  0%, 35% { transform: translateX(-130%); }
+  65%, 100% { transform: translateX(130%); }
 }
 
 @media (min-width: 700px) {
@@ -277,8 +243,8 @@ h1 {
 
   .backdrop::after {
     background:
-      linear-gradient(180deg, rgba(13, 0, 5, 0.04) 12%, rgba(18, 0, 8, 0.26) 38%, rgba(8, 0, 3, 0.78) 68%, rgba(8, 0, 3, 0.98) 100%),
-      linear-gradient(90deg, rgba(18, 0, 8, 0.48), transparent 65%);
+      linear-gradient(180deg, rgba(13, 5, 19, 0.04) 12%, rgba(17, 7, 27, 0.28) 38%, rgba(10, 4, 15, 0.8) 68%, rgba(10, 4, 15, 0.98) 100%),
+      linear-gradient(90deg, rgba(17, 7, 27, 0.52), transparent 65%);
   }
 }
 
